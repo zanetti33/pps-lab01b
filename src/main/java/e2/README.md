@@ -2,10 +2,10 @@
 
 The goal of this exercise is to create a GUI with the appearance shown in following image:
 ![f1](https://user-images.githubusercontent.com/23448811/222984113-3ff8708f-1478-447b-9d79-f35b6ce6bc2c.png)
-Particularly, it implements a clone of the game Minesweeper -
- see [https://minesweeper.online/en/](https://minesweeper.online/en/) for a recap of the game.
- You should implement the game, as follows:
-- At the beginning, randomly position a number of mines as indicated as the second argument of the GUI constructor
+Particularly, it implements a clone of the game Minesweeper -- see [https://minesweeper.online/en/](https://minesweeper.online/en/) for a recap of the game.
+
+You should implement the game, as follows:
+- Initially, distribute a specified number of mines at random locations, as determined by the second parameter of the GUI constructor.
 - Clicking on a cell containing a mine ends the game by showing the positions of the mines
 - Clicking on a cell that does NOT contain a mine disables the cell and shows the number of mines in immediate adjacency
   (i.e., in one of the 8 adjacent cells: horizontally, vertically or diagonally)
@@ -27,7 +27,7 @@ General quality objectives and specific ones, as indicated below,
 **DISCLAIMER**: there is a solution with a single `LogicsImpl` class of 80 lines
  (but you should do better!! :) ).
 
-Impeccable TDD should be used.
+It is imperative to employ flawless TDD practices.
  Estimated time for the student: 2 to 3 hours.
 
 Finding intermediate and incremental development stages is key! A possible sequence is the following:
@@ -37,14 +37,13 @@ Finding intermediate and incremental development stages is key! A possible seque
 4) if someone clicks and does not take the mine, disable the cell
 5) if someone clicks and does not take the mine, disable the cell, but also show how many adjacent mines there are
 6) if someone clicks and does not take the mine, and there are no adjacent mines, proceed with the auto-clicks
-7) manage flag placement with right-click on a cell as in the original game
+7) manage the flag placement with right-click on a cell as in the original game
 
 Note that the above objectives are not for the single red-green-refactor cycle,
  which is generally much shorter.
 
 As quality objectives, take inspiration from the following:
-0) Strive for quality in logic, not so much in GUI -
- this is not a general rule, it's just for today's task
+1) Strive for quality in logic, not so much in GUI - this is not a general rule, it's just for today's task
 1) Try not to violate DRY!
 2) If a method is not entirely clear and simple, find a different organization, perhaps by breaking it down into multiple methods
 3) If a class violates SRP, divide it into multiple classes (perhaps using patterns such as *Proxy*, *Template Method*, *Strategy*, or mere composition)

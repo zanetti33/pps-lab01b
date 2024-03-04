@@ -1,9 +1,9 @@
 # Exercise 1 Description
 Consider the above [program](#program-description),
- which is already working ([`Main`](./Main.java) should launch the described program )
+ which is already working ([`Main`](./Main.java) should launch the described program)
  and is implemented with a GUI class
  and interface/implementation for the logic.
- The purpose of the exercise is to refactor the logic part of the project
+ The purpose of the exercise is to refactor only the **logic** part of the project
  (not the GUI, do not focus on it!) to improve its quality and achieve good testing of its various parts.
 
 We propose the following TDD approach (but you can adapt it):
@@ -15,18 +15,17 @@ We propose the following TDD approach (but you can adapt it):
 4. Verify the system's functionality again
 
 ## Step 2: Refactor to improve design
-1. Consider an aspect of `LogicsImpl`'s implementation that can be externalized from `LogicsImpl` (SRP), i.e.,
-   inserted into a new class which `LogicsImpl` will be composed of
+1. Consider an aspect of `LogicsImpl`'s implementation that can be externalized from `LogicsImpl` (SRP), i.e., inserted into a new class which `LogicsImpl` will be composed of
 2. Build the interface and its implementation of this new class with TDD, i.e.,
    with various red-green-refactor steps on the new class
-3. Have LogicsImpl use this new class
-4. Re-run the tests for LogicsImpl and also perform manual testing on the GUI
+3. Have `LogicsImpl` use this new class
+4. Re-run the tests for `LogicsImpl` and also perform manual testing on the GUI
 
 Repeat these steps until `LogicsImpl` has been significantly reduced.
 
 ## Step 3: Final refinements
 At this point:
-1. Use TDD to improve what remains of LogicsImpl
+1. Use TDD to improve what remains of `LogicsImpl`
 2. Create a UML diagram of the resulting system
 
 # Program Description
