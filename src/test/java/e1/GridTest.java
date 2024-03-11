@@ -2,6 +2,7 @@ package e1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,13 +14,10 @@ public class GridTest {
     private final static int PAWN_COLUMN = 0;
     private final static int KNIGHT_ROW = 2;
     private final static int KNIGHT_COLUMN = 1;
-
-    private Grid grid;
     private Grid gridWithFixedPosition;
 
     @BeforeEach
     public void initializeGrid() {
-        this.grid = new GridImpl(GRID_SIZE);
         this.gridWithFixedPosition = new GridImpl(
             GRID_SIZE,
             PAWN_ROW,
@@ -52,5 +50,11 @@ public class GridTest {
         int newColumn = 2;
         Pair<Integer, Integer> newKnightPosition = new Pair<Integer,Integer>(newRowOutOfBound, newColumn);
         assertThrows(IndexOutOfBoundsException.class, () -> this.gridWithFixedPosition.moveKnight(newKnightPosition));
+    }
+
+    @Test
+    public void movingKnightOnPawnReturnsTrue() {
+        Pair<Integer, Integer> pawnPosition = new Pair<Integer,Integer>(PAWN_ROW, PAWN_COLUMN);
+        assertTrue(this.gridWithFixedPosition.moveKnight(pawnPosition));
     }
 }
