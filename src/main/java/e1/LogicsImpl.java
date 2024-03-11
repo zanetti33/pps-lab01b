@@ -14,6 +14,14 @@ public class LogicsImpl implements Logics {
         this.pawn = this.randomEmptyPosition();
         this.knight = this.randomEmptyPosition();	
     }
+
+	public LogicsImpl(int size, Pair<Integer, Integer> pawnPosition, Pair<Integer, Integer> knightPosition) {
+		this.size = size;
+		checkPositionIsInsideGrid(pawnPosition.getY(), pawnPosition.getX());
+		checkPositionIsInsideGrid(knightPosition.getY(), knightPosition.getX());
+		this.pawn = pawnPosition;
+		this.knight = knightPosition;
+	}
     
 	private final Pair<Integer,Integer> randomEmptyPosition(){
     	Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
@@ -23,9 +31,7 @@ public class LogicsImpl implements Logics {
     
 	@Override
 	public boolean hit(int row, int col) {
-		if (row<0 || col<0 || row >= this.size || col >= this.size) {
-			throw new IndexOutOfBoundsException();
-		}
+		checkPositionIsInsideGrid(row, col);
 		// Below a compact way to express allowed moves for the knight
 		int x = row-this.knight.getX();
 		int y = col-this.knight.getY();
@@ -34,6 +40,12 @@ public class LogicsImpl implements Logics {
 			return this.pawn.equals(this.knight);
 		}
 		return false;
+	}
+
+	private void checkPositionIsInsideGrid(int row, int col) {
+		if (row<0 || col<0 || row >= this.size || col >= this.size) {
+			throw new IndexOutOfBoundsException();
+		}
 	}
 
 	@Override

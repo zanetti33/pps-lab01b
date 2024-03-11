@@ -166,5 +166,18 @@ public class LogicTest {
     return !(row<0 || column<0 || row >= GRID_SIZE || column >= GRID_SIZE);
   }
 
+  @Test
+  public void checkThatKnightHitOnPawnReturnsTrue() {
+    int pawnRow = 0;
+    int pawnColumn = 0;
+    int knightRow = 2;
+    int knightColumn = 1;
+    int logicSize = 3;
+    Pair<Integer, Integer> pawnPosition = new Pair<Integer,Integer>(pawnRow, pawnColumn);
+    Pair<Integer, Integer> knightPosition = new Pair<Integer,Integer>(knightRow, knightColumn);
+    Logics logics = new LogicsImpl(logicSize, pawnPosition, knightPosition);
+    assertTrue(logics.hit(pawnRow, pawnColumn));
+  }
+
 
 }
