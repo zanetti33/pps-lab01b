@@ -62,4 +62,28 @@ public class LogicsTest {
         }
         assertEquals(numberOfCells, discoveredCells);
     }
+
+    @Test
+    public void settingFlags() {
+        Logics logics = new LogicsImpl(SIZE, 0);
+        Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
+        logics.switchFlag(position);
+        assertTrue(logics.hasFlag(position));
+    }
+
+    @Test
+    public void initialFlags() {
+        Logics logics = new LogicsImpl(SIZE, 0);
+        Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
+        assertFalse(logics.hasFlag(position));
+    }
+
+    @Test
+    public void disablingFlag() {
+        Logics logics = new LogicsImpl(SIZE, 0);
+        Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
+        logics.switchFlag(position);
+        logics.switchFlag(position);
+        assertFalse(logics.hasFlag(position));
+    }
 }

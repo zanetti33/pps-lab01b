@@ -2,6 +2,7 @@ package e2;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.BooleanSupplier;
 
 public class LogicsImpl implements Logics {
 
@@ -34,6 +35,17 @@ public class LogicsImpl implements Logics {
     @Override
     public int adjacentMines(Pair<Integer, Integer> position) {
         return this.grid.adjacentMines(position);
+    }
+
+    @Override
+    public boolean hasFlag(Pair<Integer, Integer> position) {
+        return false;
+    }
+
+    @Override
+    public void switchFlag(Pair<Integer, Integer> position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'switchFlag'");
     }
 
 }

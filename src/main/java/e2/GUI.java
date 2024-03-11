@@ -92,6 +92,9 @@ public class GUI extends JFrame {
                 button.setText(String.valueOf(this.logics.adjacentMines(position)));
             }
             // if this button has a flag, put the flag
+            if (this.logics.hasFlag(position)) {
+                button.setText("Flag");
+            }
     	}
     }
     
