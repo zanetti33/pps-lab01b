@@ -14,16 +14,16 @@ public class GridTest {
     private final static int PAWN_COLUMN = 0;
     private final static int KNIGHT_ROW = 2;
     private final static int KNIGHT_COLUMN = 1;
+    private final static Pair<Integer, Integer> PAWN_POSITION = new Pair<Integer,Integer>(PAWN_ROW, PAWN_COLUMN);
+    private final static Pair<Integer, Integer> KNIGHT_POSITION = new Pair<Integer,Integer>(KNIGHT_ROW, KNIGHT_COLUMN);
     private Grid gridWithFixedPosition;
 
     @BeforeEach
     public void initializeGrid() {
         this.gridWithFixedPosition = new GridImpl(
             GRID_SIZE,
-            PAWN_ROW,
-            PAWN_COLUMN,
-            KNIGHT_ROW,
-            KNIGHT_COLUMN
+            PAWN_POSITION,
+            KNIGHT_POSITION
         );
     }
     

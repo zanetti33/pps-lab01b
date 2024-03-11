@@ -71,21 +71,6 @@ public class LogicTest {
   }
 
   @Test
-  public void hasPawnOfTheGridGeneratesException() {
-    callToFunctionOutOfGridGeneratesException(this.grid::hit);
-  }
-
-  private void callToFunctionOutOfGridGeneratesException(BiFunction<Integer, Integer, Boolean> isHere) {
-    int negativeIndex = -1;
-    assertAll(
-      () -> assertThrows(IndexOutOfBoundsException.class, () -> isHere.apply(GRID_SIZE, GRID_SIZE)),
-      () -> assertThrows(IndexOutOfBoundsException.class, () -> isHere.apply(negativeIndex, GRID_SIZE)),
-      () -> assertThrows(IndexOutOfBoundsException.class, () -> isHere.apply(negativeIndex, negativeIndex)),
-      () -> assertThrows(IndexOutOfBoundsException.class, () -> isHere.apply(GRID_SIZE, negativeIndex))
-    );
-  }
-
-  @Test
   public void checkThatKnightCannotMoveOutOfBounds() {
     // in this kind of grid (2x2) the knight must have all illegal moves
     this.grid = new LogicsImpl(SMALL_GRID_SIZE);
@@ -98,8 +83,8 @@ public class LogicTest {
           () -> assertThrows(
             IndexOutOfBoundsException.class, 
             () -> this.grid.hit(
-              currentKnightPosition.getX() + moveDelta.getX(),
-              currentKnightPosition.getY() + moveDelta.getY()
+              currentKnightPosition.getY() + moveDelta.getY(),
+              currentKnightPosition.getX() + moveDelta.getX()
             )
           )
         )
@@ -148,22 +133,18 @@ public class LogicTest {
 
   @Test
   public void checkThatValidMoveActuallyMovesTheKnight() {
-    Pair<Integer, Integer> currentKnightPosition = knightPosition();
-    Pair<Integer, Integer> validKnightMove = getAllPossibleKnightMoveDeltas().stream()
-      .map(moveDelta -> new Pair<>(
-        currentKnightPosition.getX() + moveDelta.getX(),
-        currentKnightPosition.getY() + moveDelta.getY()))
-      .filter(move -> validMove(move))
-      .findFirst()
-      .orElseThrow(() -> new IllegalStateException());
-    this.grid.hit(validKnightMove.getX(), validKnightMove.getY());
-    assertEquals(validKnightMove, knightPosition());
-  }
-
-  private static Boolean validMove(Pair<Integer, Integer> move) {
-    int row = move.getX();
-    int column = move.getY();
-    return !(row<0 || column<0 || row >= GRID_SIZE || column >= GRID_SIZE);
+    int pawnRow = 1;
+    int pawnColumn = 1;
+    int knightRow = 2;
+    int knightColumn = 1;
+    int newKnightRow = 0;
+    int newKnightColumn = 0;
+    int logicSize = 3;
+    Pair<Integer, Integer> pawnPosition = new Pair<Integer,Integer>(pawnRow, pawnColumn);
+    Pair<Integer, Integer> knightPosition = new Pair<Integer,Integer>(knightRow, knightColumn);
+    Logics logics = new LogicsImpl(logicSize, pawnPosition, knightPosition);
+    logics.hit(newKnightRow, newKnightColumn);
+    assertTrue(logics.hasKnight(newKnightRow, newKnightColumn));
   }
 
   @Test
