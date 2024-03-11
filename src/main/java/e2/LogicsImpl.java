@@ -13,4 +13,9 @@ public class LogicsImpl implements Logics {
         return this.grid.hasMine(position);
     }
 
+    @Override
+    public boolean hit(Pair<Integer, Integer> position) {
+        return this.hasMine(position);
+    }
+
 }
