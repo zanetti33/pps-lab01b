@@ -11,6 +11,8 @@ public class GridImpl implements Grid {
 
     public GridImpl(int gridSize, int pawnRow, int pawnColumn, int knightRow, int knightColumn) {
         this.size = gridSize;
+        checkPositionIsInsideGrid(knightRow, knightColumn);
+        checkPositionIsInsideGrid(pawnRow, pawnColumn);
         this.pawnPosition = new Pair<Integer,Integer>(pawnRow, pawnColumn);
         this.knightPosition = new Pair<Integer,Integer>(knightRow, knightColumn);
     }
@@ -36,5 +38,18 @@ public class GridImpl implements Grid {
     public Pair<Integer, Integer> knightPosition() {
         return this.knightPosition;
     }
+
+    @Override
+    public boolean moveKnight(Pair<Integer, Integer> newPosition) {
+        checkPositionIsInsideGrid(newPosition.getY(), newPosition.getX());
+        this.knightPosition = newPosition;
+        return this.knightPosition.equals(this.pawnPosition);
+    }
+
+	private void checkPositionIsInsideGrid(int row, int column) {
+		if (row<0 || column<0 || row >= this.size || column >= this.size) {
+			throw new IndexOutOfBoundsException();
+		}
+	}
 
 }

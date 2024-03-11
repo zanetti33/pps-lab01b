@@ -1,6 +1,7 @@
 package e1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,5 +44,13 @@ public class GridTest {
     public void knightPosition() {
         Pair<Integer, Integer> knightPosition = new Pair<Integer,Integer>(KNIGHT_ROW, KNIGHT_COLUMN);
         assertEquals(knightPosition, gridWithFixedPosition.knightPosition());
+    }
+
+    @Test
+    public void movingKnightOutOfBoundsThrowsException() {
+        int newRowOutOfBound = 4;
+        int newColumn = 2;
+        Pair<Integer, Integer> newKnightPosition = new Pair<Integer,Integer>(newRowOutOfBound, newColumn);
+        assertThrows(IndexOutOfBoundsException.class, () -> this.gridWithFixedPosition.moveKnight(newKnightPosition));
     }
 }
