@@ -86,4 +86,13 @@ public class LogicsTest {
         logics.switchFlag(position);
         assertFalse(logics.hasFlag(position));
     }
+
+    @Test
+    public void winningAGame() {
+        int size = 1;
+        Logics logics = new LogicsImpl(size, 0);
+        Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
+        logics.hit(position);
+        assertTrue(logics.isWon());;
+    }
 }

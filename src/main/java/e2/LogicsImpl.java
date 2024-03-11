@@ -2,15 +2,17 @@ package e2;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.BooleanSupplier;
 
 public class LogicsImpl implements Logics {
 
     private final Grid grid;
+    private final int numberOfEmptyCells;
     private final Set<Pair<Integer, Integer>> discoveredPositions = new HashSet<>();
+    private final Set<Pair<Integer, Integer>> flagPositions = new HashSet<>();
 
     public LogicsImpl(int size, int minesNumber) {
         this.grid = new GridImpl(size, minesNumber); 
+        this.numberOfEmptyCells = size * size - minesNumber;
     }
 
     @Override
@@ -39,13 +41,21 @@ public class LogicsImpl implements Logics {
 
     @Override
     public boolean hasFlag(Pair<Integer, Integer> position) {
-        return false;
+        return this.flagPositions.contains(position);
     }
 
     @Override
     public void switchFlag(Pair<Integer, Integer> position) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'switchFlag'");
+        if (this.flagPositions.contains(position)) {
+            this.flagPositions.remove(position);
+        } else {
+            this.flagPositions.add(position);
+        }
+    }
+
+    @Override
+    public boolean isWon() {
+        return this.discoveredPositions.size() == this.numberOfEmptyCells;
     }
 
 }

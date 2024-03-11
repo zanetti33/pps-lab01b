@@ -34,7 +34,7 @@ public class GUI extends JFrame {
             } else {
                 drawBoard();            	
             }
-            boolean isThereVictory = false; // call the logic here to ask if there is victory
+            boolean isThereVictory = this.logics.isWon(); // call the logic here to ask if there is victory
             if (isThereVictory){
                 quitGame();
                 JOptionPane.showMessageDialog(this, "You won!!");
@@ -43,12 +43,13 @@ public class GUI extends JFrame {
         };
 
         MouseInputListener onRightClick = new MouseInputAdapter() {
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 final JButton bt = (JButton)e.getSource();
                 if (bt.isEnabled()){
                     final Pair<Integer,Integer> pos = buttons.get(bt);
-                    // call the logic here to put/remove a flag
+                    logics.switchFlag(pos);
                 }
                 drawBoard(); 
             }
@@ -90,10 +91,13 @@ public class GUI extends JFrame {
             if (this.logics.hasBeenDiscovered(position)) {
                 button.setEnabled(false);
                 button.setText(String.valueOf(this.logics.adjacentMines(position)));
-            }
-            // if this button has a flag, put the flag
-            if (this.logics.hasFlag(position)) {
-                button.setText("Flag");
+            } else {
+                // if this button has a flag, put the flag
+                if (this.logics.hasFlag(position)) {
+                    button.setText("Flag");
+                } else {
+                    button.setText("");
+                }
             }
     	}
     }

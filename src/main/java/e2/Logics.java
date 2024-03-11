@@ -13,5 +13,7 @@ public interface Logics {
     boolean hasFlag(Pair<Integer, Integer> position);
 
     void switchFlag(Pair<Integer, Integer> position);
+
+    boolean isWon();
     
 }
