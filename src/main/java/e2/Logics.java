@@ -5,5 +5,7 @@ public interface Logics {
     boolean hasMine(Pair<Integer, Integer> position);
 
     boolean hit(Pair<Integer, Integer> position);
+
+    boolean hasBeenDiscovered(Pair<Integer, Integer> position);
     
 }
