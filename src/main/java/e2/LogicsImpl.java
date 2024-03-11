@@ -19,7 +19,10 @@ public class LogicsImpl implements Logics {
 
     @Override
     public boolean hit(Pair<Integer, Integer> position) {
-        this.discoveredPositions.add(position);
+        Boolean firstTimeDiscovering = this.discoveredPositions.add(position);
+        if (firstTimeDiscovering && this.adjacentMines(position) == 0) {
+            this.grid.adjacentPositions(position).forEach(adjacentPosition -> this.hit(adjacentPosition));
+        }
         return this.hasMine(position);
     }
 

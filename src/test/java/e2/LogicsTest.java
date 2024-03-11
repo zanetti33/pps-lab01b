@@ -45,4 +45,21 @@ public class LogicsTest {
         Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
         assertEquals(3, logics.adjacentMines(position));
     }
+
+    @Test
+    public void recoursivelyCellDisablingWithoutMines() {
+        int numberOfCells = SIZE * SIZE;
+        Logics logics = new LogicsImpl(SIZE, 0);
+        Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
+        logics.hit(position);
+        int discoveredCells = 0;
+        for (int x=0; x<=SIZE; x++) {
+            for (int y=0; y<=SIZE; y++) {
+                if (logics.hasBeenDiscovered(new Pair<Integer,Integer>(x, y))) {
+                    discoveredCells++;
+                }
+            }
+        }
+        assertEquals(numberOfCells, discoveredCells);
+    }
 }

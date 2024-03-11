@@ -45,4 +45,16 @@ public class GridImpl implements Grid {
             .count();
     }
 
+    @Override
+    public Set<Pair<Integer, Integer>> adjacentPositions(Pair<Integer, Integer> position) {
+        Cell cell = new CellImpl(position);
+        return cell.adjacents().stream()
+            .filter(adjacentPosition -> this.isInside(adjacentPosition.getX(), adjacentPosition.getY()))
+            .collect(Collectors.toSet());
+    }
+
+    private boolean isInside(Integer x, Integer y) {
+        return x >= 0 && y >= 0 && x < this.size && y < this.size;
+    }
+
 }
