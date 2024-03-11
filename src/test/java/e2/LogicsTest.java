@@ -1,5 +1,6 @@
 package e2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,5 +29,20 @@ public class LogicsTest {
         Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
         logics.hit(position);
         assertTrue(logics.hasBeenDiscovered(position));
+    }
+
+    @Test
+    public void countOfAdjacentMinesWithoutMines() {
+        Logics logics = new LogicsImpl(SIZE, 0);
+        Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
+        assertEquals(0, logics.adjacentMines(position));
+    }
+
+    @Test
+    public void countOfAdjacentMinesWithMines() {
+        int maxNumberOfMines = SIZE * SIZE;
+        Logics logics = new LogicsImpl(SIZE, maxNumberOfMines);
+        Pair<Integer,Integer> position = new Pair<Integer,Integer>(0, 0);
+        assertEquals(3, logics.adjacentMines(position));
     }
 }

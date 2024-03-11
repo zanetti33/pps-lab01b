@@ -88,6 +88,7 @@ public class GUI extends JFrame {
             // call the logic here
             if (this.logics.hasBeenDiscovered(position)) {
                 button.setEnabled(false);
+                button.setText(String.valueOf(this.logics.adjacentMines(position)));
             }
             // if this button is a cell with counter, put the number
             // if this button has a flag, put the flag

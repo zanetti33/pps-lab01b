@@ -4,4 +4,6 @@ public interface Grid {
 
     boolean hasMine(Pair<Integer, Integer> position);
 
+    int adjacentMines(Pair<Integer, Integer> position);
+
 }

@@ -38,4 +38,11 @@ public class GridImpl implements Grid {
         return this.minePositions.contains(position);
     }
 
+    @Override
+    public int adjacentMines(Pair<Integer, Integer> position) {
+        return (int) new CellImpl(position).adjacents().stream()
+            .filter(adjacentPosition -> this.hasMine(adjacentPosition))
+            .count();
+    }
+
 }

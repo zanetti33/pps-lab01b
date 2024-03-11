@@ -28,4 +28,9 @@ public class LogicsImpl implements Logics {
         return this.discoveredPositions.contains(position);
     }
 
+    @Override
+    public int adjacentMines(Pair<Integer, Integer> position) {
+        return this.grid.adjacentMines(position);
+    }
+
 }

@@ -7,5 +7,7 @@ public interface Logics {
     boolean hit(Pair<Integer, Integer> position);
 
     boolean hasBeenDiscovered(Pair<Integer, Integer> position);
+
+    int adjacentMines(Pair<Integer, Integer> position);
     
 }
