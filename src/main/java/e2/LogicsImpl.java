@@ -2,7 +2,15 @@ package e2;
 
 public class LogicsImpl implements Logics {
 
-    public LogicsImpl(int size) {
+    private final Grid grid;
+
+    public LogicsImpl(int size, int minesNumber) {
+        this.grid = new GridImpl(size, minesNumber); 
+    }
+
+    @Override
+    public boolean hasMine(Pair<Integer, Integer> position) {
+        return this.grid.hasMine(position);
     }
 
 }
